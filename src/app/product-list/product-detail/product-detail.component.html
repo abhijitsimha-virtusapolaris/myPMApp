@@ -1,0 +1,73 @@
+<div class="container">
+    <div>
+      <h4 class='blue-text text-darken-2'>{{productDetailPageTitle}}</h4>
+    </div>
+    <table class="responsive-table" *ngIf='allProducts && allProducts.length' >
+        <thead>
+          <tr>
+              <th class="col s5 left-align">Image</th>
+              <th class="col s1 left-align">Product</th>
+              <th class="col s2 left-align">Description</th>
+              <th class="col s1 left-align">Product Code</th>
+              <th class="col s1 left-align">Available</th>
+              <th class="col s1 left-align">Item Price</th>
+              <th class="col s1 left-align">Rating</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor='let product of allProducts | productID : productFilterID'>
+            <td  class="col s5"><img [src]='product.imageUrl' alt='product.productName' [title]='product.productName' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'></td>
+            <td  class="col s1"><a [routerLink]="['/products',product.productId]">{{product.productName}}</a></td>
+            <td  class="col s2">{{product.description}}</td>
+            <td  class="col s1">{{product.productCode | lowercase}}</td>
+            <td  class="col s1">{{product.releaseDate}}</td>
+            <td  class="col s1">{{product.price | currency:'USD':true:'1.2-2'}}</td>
+            <td  class="col s1"><app-star [productName]='product.productName' [rating]='product.starRating' (ratingClicked)='onRatingClicked($event)'></app-star></td>
+          </tr>
+        </tbody>
+      </table>
+
+      
+    <!--<div class="row">
+      <div clas='col s7'>
+        <div class="row">
+        <div class="col s3">Name:</div>
+        <div class="col s4">{{product.productName}}</div>
+      </div>
+      <div class="row">
+        <div class="col s3">Code:</div>
+        <div class="col s4">{{product.productCode}}</div>
+      </div>
+      <div class="row">
+        <div class="col s3">Description</div>
+        <div class="col s4">{{product.description}}</div>
+      </div>
+      <div class="row">
+        <div class="col s3">Availabiliy</div>
+        <div class="col s4">{{product.releaseDate}}</div>
+      </div>
+      <div class="row">
+        <div class="col s3">Price</div>
+        <div class="col s4">{{product.price}}</div>
+      </div>
+      <div class="row">
+        <div class="col s3">Rating</div>
+        <div class="col s4">{{product.starRating}}</div>
+      </div>
+      </div>
+    
+      <div class="col s5">
+          <img class='' 
+                     [style.width.px]='200' 
+                     [style.margin.px]='2' 
+                     [src]='product.imageUrl'
+                     [title]='product.productName'>
+      </div>
+    </div>-->
+    <div class="footer">
+      <button class="waves-effect waves-light btn" (click)='onBack()'>back
+        <i class="material-icons left">skip_previous</i>
+      </button>
+    </div>  
+</div>
