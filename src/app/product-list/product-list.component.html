@@ -21,7 +21,7 @@
 
         <tbody>
           <tr *ngFor='let product of products | productListFilter:listFilter'>
-            <td><img *ngIf='showImageFlag' [src]='product.imageUrl' alt='product.productName' [title]='product.productName' [style.width.px]='imageWidth' [style.margin.px]='imageMargin'></td>
+            <td><img id="pimg" *ngIf='showImageFlag' [src]='product.imageUrl' alt='product.productName' [title]='product.productName' [style.width.px]='imageWidth' [style.margin.px]='imageMargin' (click)='popImage($event)'></td>
             <td><a [routerLink]="['/products',product.productId]">{{product.productName}}</a></td>
             <td>{{product.productCode | lowercase}}</td>
             <td>{{product.releaseDate}}</td>
@@ -31,4 +31,9 @@
           </tr>
         </tbody>
       </table>
+      
+       <div id="myModal" class="modal" >
+          <span class="close" (click)='closeImage(event)'>&times;</span>
+          <img class="modal-content" [src]=imgURL id="img01">
+        </div>
 </div>     

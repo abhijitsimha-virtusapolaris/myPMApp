@@ -18,6 +18,7 @@ export class ProductListComponent implements OnInit {
   filterByLabel: number= 15;
   products: IProduct[];
   errorMessage: string;
+  imgURL:String;
 
   // products: IProduct[] = [
   //      {
@@ -59,4 +60,30 @@ export class ProductListComponent implements OnInit {
   onRatingClicked(message:string): void {
     this.productlistPageTitle = 'Product List :'+ message;
   }
+
+  popImage(event){
+    console.log('POP IMAGE');
+    var target = event.target || event.srcElement || event.currentTarget;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    console.log(idAttr);
+    console.log(value);
+    console.log(target.src);
+    this.imgURL=target.src;
+   
+  var modal = document.getElementById('myModal');
+  var modalImg = document.getElementById("img01");
+   modal.style.display = "block";
+   
+
+
+  }
+closeImage(){
+
+
+    var modal = document.getElementById('myModal');
+  var modalImg = document.getElementById("img01");
+   modal.style.display = "none";
+
+}
 }
